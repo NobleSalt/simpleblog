@@ -8,17 +8,17 @@ from post.models import (
 # Create your views here.
 
 
-class CategoryView(View):
-    template_name = 'post/home.html'
+# class CategoryView(View):
+#     template_name = 'post/home.html'
 
-    def get(self, request, *args, **kwargs):
-        catg = Category.objects.all()
-        pop = Post.objects.filter(published=True).order_by('-views')
-        context = {
-            'cat': catg,
-            'pop': pops
-        }
-        return render(request, self.template_name, context)
+#     def get(self, request, *args, **kwargs):
+#         catg = Category.objects.all()
+#         pop = Post.objects.filter(published=True).order_by('-views')
+#         context = {
+#             'cat': catg,
+#             'pop': pops
+#         }
+#         return render(request, self.template_name, context)
 
 
 class PostListView(ListView):
@@ -31,6 +31,11 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
-        
+        catg = Category.objects.all()
+        pop = Post.objects.filter(published=True).order_by('-views')
+        context = {
+            'cat': catg,
+            'pops': pop
+        }
         return context
     

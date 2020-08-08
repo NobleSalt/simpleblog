@@ -12,7 +12,7 @@ from .views import (
     # add_comment_to_post,
     # comment_approve,
     # comment_remove,
-    CategoryView,
+    # CategoryView,
     )
 
 # from django.contrib.sitemaps.views import sitemap
@@ -27,9 +27,9 @@ urlpatterns = [
     # path(
     #     'about', AboutView.as_view(),
     #     name='about'),
-    path(
-        'cat/', CategoryView.as_view(),
-        name='cat'),
+    # path(
+    #     'cat/', CategoryView.as_view(),
+    #     name='cat'),
     # path(
     #     'post/<pk>', PostDetailView.as_view(),
     #     name='post_detail'),
