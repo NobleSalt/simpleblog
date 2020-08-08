@@ -44,14 +44,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'crispy_forms',
+    # 'crispy_forms',
     'django_countries',
     'debug_toolbar',
     'django.contrib.sitemaps',
 
     'post',
     'comment',
-    'bootstrap',
+    # 'bootstrap',
 ]
 
 MIDDLEWARE = [
@@ -174,4 +174,4 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 # crispy forms
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
