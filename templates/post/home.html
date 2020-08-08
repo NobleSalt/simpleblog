@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block allposts %}
+
+{% for post in postlist %}
+<div class="single-post row">
+    <div class="col-lg-3  col-md-3 meta-details">
+        <ul class="tags">
+        
+        {% for category in post.categories.all %}
+            <li><a href="#">{{ category.category_name|title }},</a></li>
+        {% endfor %}
+            <!-- <li><a href="#">Technology,</a></li>
+            <li><a href="#">Politics,</a></li>
+            <li><a href="#">Lifestyle</a></li> -->
+
+        </ul>
+        <div class="user-details row">
+            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author.username|title }}</a> <span class="lnr lnr-user"></span></p>
+            <p class="date col-lg-12 col-md-12 col-6"><a href="#">{{ post.date_published|naturalday|title }}</a> <span class="lnr lnr-calendar-full"></span></p>
+            <p class="view col-lg-12 col-md-12 col-6"><a href="#">{{ post.views|intword }} Views</a> <span class="lnr lnr-eye"></span></p>
+            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{ post.comments_count|apnumber }} Comments</a> <span class="lnr lnr-bubble"></span></p>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9">
+        <div class="feature-img">
+            <img class="img-fluid" src="{{ post.image.url }}" alt="">
+        </div>
+        <a class="posts-title" href=""><h3>{{ post.title|title }}</h3></a>
+        <p class="excert">
+        {{ post.text |truncatechars:300|title }}
+        </p>
+        <a href="" class="primary-btn">View More</a>
+    </div>
+</div>    
+{% endfor %}
+
+{% endblock allposts %}
+    
+
+{% block userprofile %}
+<div class="single-sidebar-widget user-info-widget">
+    <img src="{% static 'img/blog/user-info.png' %}" alt="">
+    <a href="#"><h4>Charlie Barber</h4></a>
+    <p>
+        Senior blog writer
+    </p>
+    <ul class="social-links">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-github"></i></a></li>
+        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+    </ul>
+    <p>
+        Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot
+        camp when you can get. Boot camps have itssuppor ters andits detractors.
+    </p>
+</div>
+{% endblock userprofile %}
+
+
+{% block popular %}
+
+{% for pop in pops %}
+<div class="single-post-list d-flex flex-row align-items-center">
+    <div class="thumb">
+        <img class="img-fluid" src="{{ pop.image.url }}" alt="">
+    </div>
+    <div class="details">
+        <a href=""><h6>{{ pop.title }}</h6></a>
+        <p>{{ pop.published_date }}</p>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock popular %}
+
+{% block ca %}
+<ul class="cat-list">
+    {% for c in cat %}
+    <li>
+        <a href="#" class="d-flex justify-content-between">
+            <p>{{ c.category_name|title }} </p>
+            <p>{{ c.all_posts.count }}</p>
+            <ul>
+            
+            {% for post in c.all_posts %}
+                <li><a href="">{{ post.title|title }}</a></li>
+            {% endfor %}
+                
+            </ul>
+        </a>
+    </li>
+    {% endfor %}
+    
+</ul>
+
+{% endblock ca %}
+    
+{% block tags %}
+<div class="single-sidebar-widget tag-cloud-widget">
+    <h4 class="tagcloud-title">Tag Clouds</h4>
+    <ul>
+        <!-- {% for post in postlist %} -->
+        {% for tag in cat %}
+            <li><a href="#">{{ tag.category_name|title }}</a></li>
+        {% endfor %}
+        <!-- {% endfor %} -->
+        
+        <!-- <li><a href="#">Technology</a></li> -->
+        <!-- <li><a href="#">Fashion</a></li>
+        <li><a href="#">Architecture</a></li>
+        <li><a href="#">Fashion</a></li>
+        <li><a href="#">Food</a></li>
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Lifestyle</a></li>
+        <li><a href="#">Art</a></li>
+        <li><a href="#">Adventure</a></li>
+        <li><a href="#">Food</a></li>
+        <li><a href="#">Lifestyle</a></li>
+        <li><a href="#">Adventure</a></li> -->
+    </ul>
+</div>
+{% endblock tags %}
+
+{% for post in postlist %}
+{% for tag in post.categories.all %}
+    <li><a href="#">{{ tag.category_name|title }}</a></li>
+{% endfor %}
+{% endfor %}
